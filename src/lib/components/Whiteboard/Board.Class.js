@@ -108,7 +108,9 @@ export class Board {
         let vpt = canvas.viewportTransform;
         vpt[4] -= e.deltaX;
         vpt[5] -= e.deltaY;
-
+        if(vpt[5]>600) vpt[5]=600;
+        if(vpt[5]<-600) vpt[5]=-600
+        
         // const boundaries = that.getCanvasContentBoundaries();
 
         // let scrolledX = vpt[4] + e.deltaX;

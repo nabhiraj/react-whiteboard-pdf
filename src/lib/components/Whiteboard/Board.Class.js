@@ -13,6 +13,7 @@ export const modes = {
 };
 
 export class Board {
+
   canvas;
   modes;
   cursorPencil = getCursor('pencil');
@@ -108,9 +109,10 @@ export class Board {
         let vpt = canvas.viewportTransform;
         vpt[4] -= e.deltaX;
         vpt[5] -= e.deltaY;
-        if(vpt[5]>600) vpt[5]=600;
-        if(vpt[5]<-600) vpt[5]=-600
-        
+        const delta = opt.e.deltaY;
+        if(vpt[5] < -1*Math.abs(5*delta)) vpt[5]=-1*Math.abs(5*delta);
+        if(vpt[5] > Math.abs(5*delta)) vpt[5]=Math.abs(5*delta);
+    
         // const boundaries = that.getCanvasContentBoundaries();
 
         // let scrolledX = vpt[4] + e.deltaX;

@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect, useMemo } from 'react';
+import Undo from '../../../Undo';
 import PropTypes from 'prop-types';
 import {
   WhiteBoardS,
@@ -107,6 +108,7 @@ const Whiteboard = ({
         FILES: true,
         SAVE_AS_IMAGE: true,
         GO_TO_START: true,
+        UNDO:true,
         ZOOM: true,
 
         ...controls,
@@ -283,6 +285,15 @@ const Whiteboard = ({
     board.resetZoom(1);
   }
 
+  function onUndo(){
+    let undo = Undo.getUndoInstance();
+    if(undo.operationHistory.length>2){
+     board.setCanvasConfig({...canvasConfig,contentJSON:undo.getLastObject()});
+    }else{
+      console.error('there is nothing in the undo stack');
+    }
+  }
+
   function onFileChange(event) {
     if (!event.target.files[0]) return;
 
@@ -446,6 +457,14 @@ const Whiteboard = ({
               </ButtonS>
             </ToolbarItemS>
           )}
+
+          {!!enabledControls.UNDO && (
+            <ToolbarItemS>
+              <ButtonS onClick={onUndo}>
+                undo
+              </ButtonS>
+            </ToolbarItemS>
+          )}  
 
           
         </ToolbarS>

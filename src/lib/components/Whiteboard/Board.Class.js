@@ -109,9 +109,9 @@ export class Board {
         let vpt = canvas.viewportTransform;
         vpt[4] -= e.deltaX;
         vpt[5] -= e.deltaY;
-        const delta = opt.e.deltaY;
-        if(vpt[5] < -1*Math.abs(5*delta)) vpt[5]=-1*Math.abs(5*delta);
-        if(vpt[5] > Math.abs(5*delta)) vpt[5]=Math.abs(5*delta);
+        //const delta = opt.e.deltaY;
+        //if(vpt[5] < -1*Math.abs(5*delta)) vpt[5]=-1*Math.abs(5*delta);
+        //if(vpt[5] > Math.abs(5*delta)) vpt[5]=Math.abs(5*delta);
     
         // const boundaries = that.getCanvasContentBoundaries();
 
